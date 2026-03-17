@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The Original Cafe</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#FFF8E1;
+}
+
+header{
+background:#4E342E;
+color:white;
+padding:15px;
+text-align:center;
+font-size:26px;
+font-weight:bold;
+letter-spacing:3px;
+}
+
+.veg{
+color:#00C853;
+font-size:20px;
+margin-right:8px;
+}
+
+.hero{
+background:url("https://images.unsplash.com/photo-1550547660-d9450f859349") center/cover;
+height:200px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:26px;
+font-weight:bold;
+text-shadow:0 3px 10px black;
+}
+
+.categories{
+display:flex;
+overflow:auto;
+gap:10px;
+padding:10px;
+background:white;
+}
+
+.categories a{
+background:#4E342E;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+text-decoration:none;
+white-space:nowrap;
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:12px;
+padding:12px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card img{
+width:100%;
+height:140px;
+object-fit:cover;
+}
+
+.card h4{
+margin:8px;
+}
+
+.price{
+margin-left:8px;
+color:#FF8F00;
+}
+
+.addbtn{
+margin:10px;
+background:#E53935;
+border:none;
+color:white;
+padding:7px 12px;
+border-radius:6px;
+}
+
+.cartbtn{
+position:fixed;
+bottom:80px;
+right:20px;
+background:#E53935;
+color:white;
+border-radius:50%;
+padding:15px;
+font-size:18px;
+}
+
+.cartpanel{
+position:fixed;
+right:-100%;
+top:0;
+width:100%;
+height:100%;
+background:white;
+padding:20px;
+transition:0.4s;
+overflow:auto;
+}
+
+.cartpanel.open{
+right:0;
+}
+
+.remove{
+background:red;
+color:white;
+border:none;
+margin-left:10px;
+}
+
+.order{
+background:#FF8F00;
+border:none;
+color:white;
+padding:12px;
+width:100%;
+margin-top:10px;
+border-radius:8px;
+font-size:16px;
+}
+
+.bottomnav{
+position:fixed;
+bottom:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:10px;
+box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<span class="veg">🟢</span>
+THE ORIGINAL
+</header>
+
+<div class="hero">
+Fresh Food Fast Delivery
+</div>
+
+<div class="categories">
+<a href="#coffee">Coffee</a>
+<a href="#sandwich">Sandwich</a>
+<a href="#burger">Burger</a>
+<a href="#momos">Momos</a>
+<a href="#shake">Shakes</a>
+<a href="#icecream">Ice Cream</a>
+</div>
+
+<div class="menu" id="menu"></div>
+
+<div class="cartbtn" onclick="toggleCart()">
+🛒 <span id="count">0</span>
+</div>
+
+<div class="cartpanel" id="cartpanel">
+
+<h2>Your Cart</h2>
+
+<div id="cartitems"></div>
+
+<h3 id="total"></h3>
+
+<input id="name" placeholder="Customer Name">
+<input id="flat" placeholder="Flat No">
+<input id="building" placeholder="Building Name">
+<textarea id="address" placeholder="Full Address"></textarea>
+
+<button class="order" onclick="placeOrder()">Pay & Order</button>
+
+</div>
+
+<div class="bottomnav">
+🏠 Home
+📋 Menu
+⭐ Reviews
+📞 Contact
+</div>
+
+<script>
+
+const menu=[
+
+{name:"Regular Hot Coffee",price:20,img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"},
+{name:"Hazelnut Coffee",price:30,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"},
+{name:"Cold Coffee",price:80,img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735"},
+
+{name:"Corn Sandwich",price:50,img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af"},
+{name:"Cheese Sandwich",price:70,img:"https://images.unsplash.com/photo-1553909489-cd47e0907980"},
+
+{name:"Classic Burger",price:60,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+{name:"Cheese Burger",price:80,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
+
+{name:"French Fries",price:40,img:"https://images.unsplash.com/photo-1576107232684-1279f390859f"},
+
+{name:"Steam Veg Momos",price:50,img:"https://images.unsplash.com/photo-1604908176997-43114e8e4e1c"},
+{name:"Fried Momos",price:60,img:"https://images.unsplash.com/photo-1604908554021-2d6d0b9b0f6b"},
+
+{name:"Chocolate Shake",price:80,img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699"},
+{name:"Oreo Shake",price:100,img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90"},
+
+{name:"Vanilla Ice Cream",price:25,img:"https://images.unsplash.com/photo-1579954115545-a95591f28bfc"},
+{name:"Chocolate Ice Cream",price:25,img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"}
+
+]
+
+let cart=[]
+
+const menuDiv=document.getElementById("menu")
+
+menu.forEach((item,i)=>{
+
+menuDiv.innerHTML+=`
+
+<div class="card">
+<img src="${item.img}">
+<h4>${item.name}</h4>
+<p class="price">₹${item.price}</p>
+<button class="addbtn" onclick="add(${i})">Add</button>
+</div>
+
+`
+
+})
+
+function add(i){
+
+let item=menu[i]
+
+let exist=cart.find(x=>x.name==item.name)
+
+if(exist){
+
+exist.qty++
+
+}else{
+
+cart.push({...item,qty:1})
+
+}
+
+updateCart()
+
+}
+
+function remove(i){
+
+cart.splice(i,1)
+
+updateCart()
+
+}
+
+function updateCart(){
+
+let html=""
+
+let total=0
+
+cart.forEach((item,index)=>{
+
+total+=item.price*item.qty
+
+html+=`
+
+<p>
+
+${item.name} x ${item.qty}
+
+₹${item.price*item.qty}
+
+<button class="remove" onclick="remove(${index})">X</button>
+
+</p>
+
+`
+
+})
+
+document.getElementById("cartitems").innerHTML=html
+document.getElementById("total").innerText="Total ₹"+total
+document.getElementById("count").innerText=cart.length
+
+}
+
+function toggleCart(){
+
+document.getElementById("cartpanel").classList.toggle("open")
+
+}
+
+function placeOrder(){
+
+let name=document.getElementById("name").value
+let flat=document.getElementById("flat").value
+let building=document.getElementById("building").value
+let address=document.getElementById("address").value
+
+let total=0
+let list=""
+
+cart.forEach(item=>{
+
+total+=item.price*item.qty
+list+=item.name+" x"+item.qty+" - ₹"+(item.price*item.qty)+"%0A"
+
+})
+
+let date=new Date()
+
+let id="ORD"+
+date.getFullYear()+
+(date.getMonth()+1)+
+date.getDate()+
+date.getHours()+
+date.getMinutes()+
+date.getSeconds()
+
+let upi="upi://pay?pa=8709189586@ptsbi&pn=The Original&am="+total+"&cu=INR"
+
+window.location.href=upi
+
+setTimeout(()=>{
+
+let txn=prompt("Enter UPI Transaction ID")
+
+let msg=`Cafe Order%0A%0AOrder ID: ${id}%0ACustomer: ${name}%0AFlat: ${flat}%0ABuilding: ${building}%0AAddress: ${address}%0A%0AItems:%0A${list}%0ATotal: ₹${total}%0APayment: Paid ✅%0ATXN ID: ${txn}`
+
+window.open(`https://wa.me/918709189586?text=${msg}`)
+
+},4000)
+
+}
+
+</script>
+
+</body>
+</html>
