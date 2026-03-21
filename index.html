@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,6 +208,7 @@ header::after{content:'';position:absolute;bottom:0;left:50%;transform:translate
 
 <script>
 const menuData=[
+  // ── COFFEE ──
   {cat:"Coffee",name:"Regular Hot Coffee",price:20,img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"},
   {cat:"Coffee",name:"Hazelnut Hot Coffee",price:30,img:"https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=400&q=80"},
   {cat:"Coffee",name:"Butterscotch Hot Coffee",price:30,img:"https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=400&q=80"},
@@ -216,38 +216,50 @@ const menuData=[
   {cat:"Coffee",name:"Classic Cold Coffee",price:80,img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80"},
   {cat:"Coffee",name:"Strong Cold Coffee",price:90,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80"},
   {cat:"Coffee",name:"Hazelnut Cold Coffee",price:100,img:"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80"},
-  {cat:"Coffee",name:"Butterscotch Cold Coffee",price:90,img:"https://in.pinterest.com/pin/37014028184021878/"},
-  {cat:"Coffee",name:"Chocolate Cold Coffee",price:120,img:"https://in.pinterest.com/pin/940267228462370934/"},
-  {cat:"Coffee",name:"Black Coffee",price:10,img:"https://in.pinterest.com/pin/232850243247008799/"},
-  {cat:"Sandwich",name:"Corn Sandwich",price:50,img:"https://in.pinterest.com/pin/873135446551835165/"},
+  {cat:"Coffee",name:"Butterscotch Cold Coffee",price:90,img:"https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Coffee",name:"Chocolate Cold Coffee",price:120,img:"https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Coffee",name:"Black Coffee",price:10,img:"https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=400&q=80"},
+
+  // ── SANDWICH ──
+  {cat:"Sandwich",name:"Corn Sandwich",price:50,img:"https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=400&q=80"},
   {cat:"Sandwich",name:"Cheese Sandwich",price:70,img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80"},
-  {cat:"Sandwich",name:"Cheese & Corn Sandwich",price:80,img:"https://in.pinterest.com/pin/451415562665630954/"},
-  {cat:"Sandwich",name:"Paneer Sandwich",price:80,img:"https://in.pinterest.com/pin/628674429276635140/"},
-  {cat:"Sandwich",name:"Protein Sandwich",price:60,img:"https://in.pinterest.com/pin/628674429276635140/"},
-  {cat:"Sandwich",name:"Nutella Sandwich",price:100,img:"https://in.pinterest.com/pin/453385887463114307/"},
-  {cat:"Burger",name:"Classic Burger",price:60,img:"https://in.pinterest.com/pin/92886811061621110/"},
-  {cat:"Burger",name:"Cheese Burger",price:80,img:"https://in.pinterest.com/pin/321725967155086047/"},
+  {cat:"Sandwich",name:"Cheese & Corn Sandwich",price:80,img:"https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Sandwich",name:"Paneer Sandwich",price:80,img:"https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Sandwich",name:"Protein Sandwich",price:60,img:"https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Sandwich",name:"Nutella Sandwich",price:100,img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=400&q=80"},
+
+  // ── BURGER ──
+  {cat:"Burger",name:"Classic Burger",price:60,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Burger",name:"Cheese Burger",price:80,img:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80"},
+
+  // ── FRIES ──
   {cat:"Fries",name:"French Fries",price:40,img:"https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=400&q=80"},
   {cat:"Fries",name:"Peri Peri Fries",price:60,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=400&q=80"},
-  {cat:"Momos",name:"Steam Veg Momo (6 pcs)",price:50,img:"https://in.pinterest.com/pin/53409945577991722/"},
-  {cat:"Momos",name:"Steam Veg Momo (10 pcs)",price:80,img:"https://in.pinterest.com/pin/865254147132983370/"},
-  {cat:"Momos",name:"Veg Fried Momo (6 pcs)",price:60,img:"https://in.pinterest.com/pin/325948091802546236/"},
-  {cat:"Momos",name:"Veg Fried Momo (10 pcs)",price:100,img:"https://in.pinterest.com/pin/154459462212179936/"},
-  {cat:"Momos",name:"Steam Paneer Momo (10 pcs)",price:90,img:"https://in.pinterest.com/pin/459437599509381140/"},
-  {cat:"Momos",name:"Steam Paneer Momo (5 pcs)",price:50,img:"https://in.pinterest.com/pin/14847873767719654/"},
-  {cat:"Momos",name:"Paneer Fried Momo (10 pcs",price:110,img:"https://in.pinterest.com/pin/126100858315106304/"},
-  {cat:"Momos",name:"Paneer Fried Momo (6 pcs",price:70,img:"https://in.pinterest.com/pin/361976888824890304/"},
-  {cat:"Momos",name:"KFC Momo (4 pcs)",price:50,img:"https://in.pinterest.com/pin/656962664435251492/"},
-  {cat:"Momos",name:"KFC Momo (8 pcs)",price:100,img:"https://in.pinterest.com/pin/459437599509373486/"},
-  {cat:"Milkshakes",name:"Blueberry Milkshake",price:120,img:"https://in.pinterest.com/pin/41939840274751116/"},
-  {cat:"Milkshakes",name:"Blackcurrant Milkshake",price:100,img:"https://in.pinterest.com/pin/881720433314349207/"},
-  {cat:"Milkshakes",name:"Butterscotch Milkshake",price:80,img:"https://in.pinterest.com/pin/908108712366189171/"},
-  {cat:"Milkshakes",name:"Strawberry Milkshake",price:80,img:"https://in.pinterest.com/pin/26740191532617575/"},
-  {cat:"Milkshakes",name:"Pineapple Milkshake",price:80,img:"https://in.pinterest.com/pin/1015209940978375784/"},
-  {cat:"Milkshakes",name:"Rose Milkshake",price:80,img:"https://in.pinterest.com/pin/28499410137143288/"},
-  {cat:"Milkshakes",name:"Mango Milkshake",price:80,img:"https://in.pinterest.com/pin/142004194498721254/"},
-  {cat:"Milkshakes",name:"Banana Milkshake",price:70,img:"https://in.pinterest.com/pin/106819822408906907/"},
-  {cat:"Milkshakes",name:"Vanilla Milkshake",price:70,img:"https://in.pinterest.com/pin/56435801577704381/"},
+
+  // ── MOMOS ──
+  {cat:"Momos",name:"Steam Veg Momo (6 pcs)",price:50,img:"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Steam Veg Momo (10 pcs)",price:80,img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Veg Fried Momo (6 pcs)",price:60,img:"https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Veg Fried Momo (10 pcs)",price:100,img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Steam Paneer Momo (10 pcs)",price:90,img:"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Steam Paneer Momo (5 pcs)",price:50,img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Paneer Fried Momo (10 pcs)",price:110,img:"https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"Paneer Fried Momo (6 pcs)",price:70,img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"KFC Momo (4 pcs)",price:50,img:"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Momos",name:"KFC Momo (8 pcs)",price:100,img:"https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=400&q=80"},
+
+  // ── MILKSHAKES ──
+  {cat:"Milkshakes",name:"Blueberry Milkshake",price:120,img:"https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Blackcurrant Milkshake",price:100,img:"https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Butterscotch Milkshake",price:80,img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Strawberry Milkshake",price:80,img:"https://images.unsplash.com/photo-1567203740300-b5b67b0eba7b?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Pineapple Milkshake",price:80,img:"https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Rose Milkshake",price:80,img:"https://images.unsplash.com/photo-1557142046-c704a3adf364?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Mango Milkshake",price:80,img:"https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Banana Milkshake",price:70,img:"https://images.unsplash.com/photo-1571748982800-fa51082c2224?auto=format&fit=crop&w=400&q=80"},
+  {cat:"Milkshakes",name:"Vanilla Milkshake",price:70,img:"https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=400&q=80"},
+
+  // ── CHOCO SHAKES ──
   {cat:"Choco Shakes",name:"Chocolate Overload Shake",price:120,img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80"},
   {cat:"Choco Shakes",name:"Dark Chocolate Shake",price:100,img:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=400&q=80"},
   {cat:"Choco Shakes",name:"Peanut Butter Shake",price:100,img:"https://images.unsplash.com/photo-1511374341-73ef12049b3c?auto=format&fit=crop&w=400&q=80"},
@@ -257,13 +269,19 @@ const menuData=[
   {cat:"Choco Shakes",name:"Kitkat Shake",price:100,img:"https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?auto=format&fit=crop&w=400&q=80"},
   {cat:"Choco Shakes",name:"Banana Chocolate Shake",price:80,img:"https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=400&q=80"},
   {cat:"Choco Shakes",name:"Chocolate Shake",price:80,img:"https://images.unsplash.com/photo-1541658016709-82835ce7c4d3?auto=format&fit=crop&w=400&q=80"},
+
+  // ── MOCKTAIL ──
   {cat:"Mocktail",name:"Blue Lagoon",price:80,img:"https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=400&q=80"},
   {cat:"Mocktail",name:"Mint Mojito",price:80,img:"https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=400&q=80"},
   {cat:"Mocktail",name:"Black Magic",price:80,img:"https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=80"},
   {cat:"Mocktail",name:"Orange Sunset",price:80,img:"https://images.unsplash.com/photo-1609951651556-5334e2706168?auto=format&fit=crop&w=400&q=80"},
+
+  // ── PROTEIN ──
   {cat:"Protein",name:"Post Workout Shake",price:120,img:"https://images.unsplash.com/photo-1622484212850-eb596d769edc?auto=format&fit=crop&w=400&q=80"},
   {cat:"Protein",name:"Fat Loss Shake",price:120,img:"https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=400&q=80"},
   {cat:"Protein",name:"Bulk Protein Shake",price:150,img:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=400&q=80"},
+
+  // ── ICE CREAM ──
   {cat:"Ice Cream",name:"Chocolate Ice Cream",price:25,img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80"},
   {cat:"Ice Cream",name:"Strawberry Ice Cream",price:25,img:"https://images.unsplash.com/photo-1570197571499-166b36435e9f?auto=format&fit=crop&w=400&q=80"},
   {cat:"Ice Cream",name:"Vanilla Ice Cream",price:25,img:"https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=400&q=80"},
@@ -418,4 +436,3 @@ buildMenu();
 </script>
 </body>
 </html>
-```
