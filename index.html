@@ -39,13 +39,23 @@ header{text-align:center;padding:80px 20px 40px;position:relative;border-bottom:
 header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:var(--gold);}
 #particleCanvas{position:absolute;inset:0;pointer-events:none;opacity:.4;}
 .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;}
-.logo-ornament{color:var(--gold);font-size:22px;letter-spacing:8px;opacity:.7;animation:ornamentFloat 3s ease-in-out infinite;}
-@keyframes ornamentFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.logo-ornament{font-size:22px;letter-spacing:8px;display:flex;gap:10px;align-items:center;justify-content:center;}
+.orn-dot{display:inline-block;animation:dotFloat 3s ease-in-out infinite;}
+.d1{color:#c9a84c;animation-delay:0s;animation-name:dotFloat,dotColor1;}
+.d2{color:#e8a0b0;animation-delay:.4s;animation-name:dotFloat,dotColor2;}
+.d3{color:#7ec8c8;animation-delay:.8s;animation-name:dotFloat,dotColor3;}
+@keyframes dotFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes dotColor1{0%,100%{color:#c9a84c;}33%{color:#e8c97a;}66%{color:#a07a30;}}
+@keyframes dotColor2{0%,100%{color:#e891a4;}33%{color:#f5b8c8;}66%{color:#c9607a;}}
+@keyframes dotColor3{0%,100%{color:#5ec4c4;}33%{color:#8cdede;}66%{color:#3a9898;}}
+.d1,.d2,.d3{animation-duration:3s,4s;animation-timing-function:ease-in-out,ease-in-out;animation-iteration-count:infinite,infinite;}
 .shop-name{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,8vw,72px);font-weight:300;letter-spacing:6px;text-transform:uppercase;line-height:1;background:linear-gradient(90deg,var(--cream) 0%,var(--gold-light) 30%,var(--cream) 50%,var(--gold) 70%,var(--cream) 100%);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite;}
 @keyframes shimmer{0%{background-position:-250% center;}100%{background-position:250% center;}}
 .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,3vw,18px);color:var(--gold);letter-spacing:3px;margin-top:8px;opacity:.85;}
-.address-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:6px 16px;margin-top:12px;font-size:11px;color:var(--muted);letter-spacing:1.2px;}
-.address-chip .pin{color:var(--gold);}
+.address-chip{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.4);border-radius:24px;padding:8px 18px;margin-top:14px;font-size:11px;color:var(--cream);letter-spacing:1.5px;box-shadow:0 0 18px rgba(201,168,76,.15),inset 0 1px 0 rgba(201,168,76,.2);animation:addressGlow 3s ease-in-out infinite;}
+@keyframes addressGlow{0%,100%{box-shadow:0 0 14px rgba(201,168,76,.15),inset 0 1px 0 rgba(201,168,76,.2);}50%{box-shadow:0 0 28px rgba(201,168,76,.35),inset 0 1px 0 rgba(201,168,76,.3);}}
+.address-chip .pin{color:var(--gold);font-size:13px;}
+.address-chip strong{color:var(--gold-light);font-weight:600;}
 .divider-ornament{display:flex;align-items:center;gap:14px;margin:16px auto 0;width:fit-content;}
 .divider-ornament span{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
 .divider-ornament span:last-child{background:linear-gradient(90deg,var(--gold),transparent);}
@@ -103,9 +113,14 @@ header::after{content:'';position:absolute;bottom:0;left:50%;transform:translate
 @keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
 
 /* ── CART BUTTON ── */
-#cartBtn{position:fixed;bottom:24px;right:20px;z-index:900;background:var(--gold);color:var(--dark);border:none;border-radius:50%;width:58px;height:58px;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.4);font-size:22px;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
-#cartBtn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(201,168,76,.55);}
-#cartCount{position:absolute;top:-5px;right:-5px;background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;font-size:11px;font-weight:600;display:none;align-items:center;justify-content:center;}
+#cartBtn{position:fixed;bottom:24px;right:20px;z-index:900;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;border:none;border-radius:50%;width:62px;height:62px;cursor:pointer;box-shadow:0 6px 24px rgba(124,58,237,.55),0 2px 8px rgba(0,0,0,.4);font-size:24px;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
+#cartBtn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(124,58,237,.75);}
+#cartBtn.has-items{animation:cartBounce .4s ease;}
+@keyframes cartBounce{0%,100%{transform:scale(1);}40%{transform:scale(1.18);}70%{transform:scale(0.95);}}
+#cartBtn::before{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(168,85,247,.0);transition:border-color .3s,inset .3s;}
+#cartBtn.has-items::before{border-color:rgba(168,85,247,.55);animation:cartRing 1.8s ease-out infinite;}
+@keyframes cartRing{0%{inset:-4px;opacity:.9;border-color:rgba(168,85,247,.6);}100%{inset:-14px;opacity:0;border-color:rgba(168,85,247,.0);}}
+#cartCount{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#fff;border-radius:50%;width:24px;height:24px;font-size:11px;font-weight:700;display:none;align-items:center;justify-content:center;border:2px solid var(--dark);box-shadow:0 2px 8px rgba(139,26,26,.6);}
 
 /* ── ADMIN BUTTON ── */
 #adminBtn{position:fixed;bottom:94px;right:20px;z-index:900;background:var(--dark3);color:var(--muted);border:1px solid rgba(201,168,76,.2);border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
@@ -230,6 +245,9 @@ textarea.form-input{resize:vertical;min-height:120px;font-size:13px;line-height:
 .status-btn.close-btn{color:var(--accent);border-color:var(--accent);}
 .status-btn.close-btn:hover,.status-btn.close-btn.sel{background:var(--accent);color:#fff;}
 
+/* ── OUT OF RANGE ── */
+.oor-screen{animation:modalIn .3s ease;}
+
 /* ── FOOTER ── */
 .site-footer{text-align:center;padding:32px 20px 40px;border-top:1px solid rgba(201,168,76,.1);margin-top:20px;}
 .footer-address{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:15px;letter-spacing:1.2px;margin-bottom:14px;}
@@ -260,10 +278,10 @@ textarea.form-input{resize:vertical;min-height:120px;font-size:13px;line-height:
 <header>
   <canvas id="particleCanvas"></canvas>
   <div class="logo-wrap">
-    <div class="logo-ornament">✦ ✦ ✦</div>
+    <div class="logo-ornament"><span class="orn-dot d1">✦</span> <span class="orn-dot d2">✦</span> <span class="orn-dot d3">✦</span></div>
     <div class="shop-name">The Original</div>
     <div class="tagline">Where Every Sip Tells a Story</div>
-    <div class="address-chip">📍 <span>S Type Adityapur</span>, near Vishal Megamart &nbsp;·&nbsp; PIN <span>831013</span></div>
+    <div class="address-chip">📍 <strong>S Type Adityapur</strong>, near Vishal Megamart &nbsp;·&nbsp; PIN <strong>831013</strong></div>
     <div class="pureveg-badge">
       <div class="veg-symbol"></div>
       <span class="pureveg-text">Pure Vegetarian</span>
@@ -346,7 +364,7 @@ textarea.form-input{resize:vertical;min-height:120px;font-size:13px;line-height:
         <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="pName" placeholder="Your name"/></div>
         <div class="form-group"><label class="form-label">Mobile Number</label><input class="form-input" id="pPhone" type="tel" placeholder="+91 XXXXXXXXXX"/></div>
       </div>
-      <button class="btn-gold" style="margin-top:8px;" onclick="sendOrder()">Send Order on WhatsApp</button>
+      <button id="placeOrderBtn" class="btn-gold" style="margin-top:8px;" onclick="sendOrder()">Send Order on WhatsApp</button>
     </div>
   </div>
 </div>
@@ -444,13 +462,15 @@ const menuData=[
 /* ══════════════════════════════════
    STATE (localStorage)
 ══════════════════════════════════ */
-let soldOut = JSON.parse(localStorage.getItem('soldOut')||'{}');
-let ads     = JSON.parse(localStorage.getItem('ads')||'[]');
+let soldOut       = JSON.parse(localStorage.getItem('soldOut')||'{}');
+let ads           = JSON.parse(localStorage.getItem('ads')||'[]');
+let deliveryRange = parseFloat(localStorage.getItem('deliveryRange')||'5');
 let tncText = localStorage.getItem('tncText') || `TERMS & CONDITIONS — THE ORIGINAL\n\n1. Orders once placed cannot be cancelled.\n2. Delivery is available within the local Adityapur area only.\n3. Delivery charges may apply based on distance.\n4. In case of any quality issue, please contact us within 30 minutes of receiving your order.\n5. Prices displayed are inclusive of all applicable taxes.\n6. The Original is a 100% Pure Vegetarian establishment.\n7. We are not responsible for any allergic reactions. Please inform us of any specific allergies before ordering.\n8. Payment is accepted in Cash and UPI only. No online card payments.\n9. Shop timings and menu items are subject to change without prior notice.\n10. The management reserves the right to refuse service in case of misconduct or unreasonable demands.\n11. Images shown are for representational purposes and may vary slightly from actual items.\n12. In case of disputes, the decision of The Original management shall be final.`;
 
 function saveState(){
   localStorage.setItem('soldOut', JSON.stringify(soldOut));
   localStorage.setItem('ads', JSON.stringify(ads));
+  localStorage.setItem('deliveryRange', deliveryRange);
   localStorage.setItem('tncText', tncText);
 }
 
@@ -459,6 +479,15 @@ let deliveryMode='delivery';
 let shopOpen=true;
 const WHATSAPP_NO='918709189586';
 const categories=[...new Set(menuData.map(i=>i.cat))];
+const SHOP_LAT=22.787887, SHOP_LNG=86.159083;
+
+/* Haversine distance in km */
+function haversine(lat1,lng1,lat2,lng2){
+  const R=6371,toRad=x=>x*Math.PI/180;
+  const dLat=toRad(lat2-lat1),dLng=toRad(lng2-lng1);
+  const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
 
 /* ══════════════════════════════════
    PARTICLE CANVAS
@@ -622,8 +651,19 @@ function refreshCard(name){
 function updateCartCount(){
   const total=Object.values(cart).reduce((s,i)=>s+i.qty,0);
   const badge=document.getElementById('cartCount');
-  badge.textContent=total;badge.style.display=total>0?'flex':'none';
-  if(total>0){badge.animate([{transform:'scale(1.5)'},{transform:'scale(1)'}],{duration:300});}
+  const btn=document.getElementById('cartBtn');
+  badge.textContent=total;
+  badge.style.display=total>0?'flex':'none';
+  if(total>0){
+    btn.classList.add('has-items');
+    badge.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}],{duration:300});
+    // re-trigger bounce
+    btn.classList.remove('has-items');
+    void btn.offsetWidth;
+    btn.classList.add('has-items');
+  } else {
+    btn.classList.remove('has-items');
+  }
 }
 function openCart(){document.getElementById('cartDrawer').classList.add('open');renderCartItems();}
 function closeCart(){document.getElementById('cartDrawer').classList.remove('open');}
@@ -648,7 +688,95 @@ function selectMode(mode){
   document.getElementById('pickupFields').style.display=mode==='pickup'?'block':'none';
 }
 function genOrderId(){const n=new Date();const p=x=>String(x).padStart(2,'0');return`ORD-${n.getFullYear()}${p(n.getMonth()+1)}${p(n.getDate())}-${p(n.getHours())}${p(n.getMinutes())}${p(n.getSeconds())}`;}
+
 function sendOrder(){
+  // Validate form fields first
+  if(deliveryMode==='delivery'){
+    const name=document.getElementById('dName').value.trim();
+    const phone=document.getElementById('dPhone').value.trim();
+    const building=document.getElementById('dBuilding').value.trim();
+    const flat=document.getElementById('dFlat').value.trim();
+    if(!name||!phone||!building||!flat){showToast('Please fill all required fields');return;}
+  } else {
+    const name=document.getElementById('pName').value.trim();
+    const phone=document.getElementById('pPhone').value.trim();
+    if(!name||!phone){showToast('Please fill name and mobile');return;}
+  }
+
+  if(deliveryMode==='delivery'){
+    // Show location checking state
+    const btn=document.getElementById('placeOrderBtn');
+    btn.textContent='📍 Checking your location...';btn.disabled=true;
+    if(!navigator.geolocation){
+      btn.textContent='Send Order on WhatsApp';btn.disabled=false;
+      showToast('Location not supported — proceeding');
+      _dispatchOrder();return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      pos=>{
+        btn.textContent='Send Order on WhatsApp';btn.disabled=false;
+        const dist=haversine(pos.coords.latitude,pos.coords.longitude,SHOP_LAT,SHOP_LNG);
+        if(dist>deliveryRange){
+          showOutOfRange(dist);
+        } else {
+          _dispatchOrder(dist);
+        }
+      },
+      err=>{
+        btn.textContent='Send Order on WhatsApp';btn.disabled=false;
+        showToast('Location access denied — proceeding');
+        _dispatchOrder(null);
+      },
+      {timeout:10000,maximumAge:60000}
+    );
+  } else {
+    _dispatchOrder(null);
+  }
+}
+
+function showOutOfRange(dist){
+  const body=document.querySelector('#orderModal .modal-body');
+  body.innerHTML=`
+    <div style="text-align:center;padding:20px 8px 10px;animation:modalIn .35s ease;">
+      <div style="font-size:58px;margin-bottom:16px;line-height:1;">🚫</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);letter-spacing:2px;margin-bottom:12px;">Out of Delivery Range</div>
+      <div style="background:rgba(139,26,26,.15);border:1px solid rgba(139,26,26,.35);border-radius:6px;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-size:13px;color:var(--text);line-height:1.9;">
+          You are &nbsp;<strong style="color:var(--accent);font-size:18px;">${dist.toFixed(1)} km</strong>&nbsp; away from us.<br/>
+          We deliver only within &nbsp;<strong style="color:var(--gold);font-size:16px;">${deliveryRange} km</strong>&nbsp; radius.
+        </div>
+      </div>
+      <div style="font-size:11px;color:rgba(158,144,128,.55);margin-bottom:22px;letter-spacing:.8px;line-height:1.6;">
+        📍 The Original · S Type Adityapur<br/>near Vishal Megamart, PIN 831013
+      </div>
+      <button class="btn-gold" style="margin-bottom:10px;" onclick="switchToPickupFromOOR()">🏃 Switch to Self Pickup</button>
+      <button class="btn-outline" onclick="closeOrderModal()">← Go Back</button>
+    </div>`;
+}
+function switchToPickupFromOOR(){
+  const body=document.querySelector('#orderModal .modal-body');
+  body.innerHTML=`
+    <div class="delivery-choice">
+      <button class="choice-btn" id="btnDelivery" onclick="selectMode('delivery')">🚚 Delivery</button>
+      <button class="choice-btn selected" id="btnPickup" onclick="selectMode('pickup')">🏃 Pickup</button>
+    </div>
+    <div id="deliveryFields" style="display:none;">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="dName" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Mobile Number</label><input class="form-input" id="dPhone" type="tel" placeholder="+91 XXXXXXXXXX"/></div>
+      <div class="form-group"><label class="form-label">Building Name</label><input class="form-input" id="dBuilding" placeholder="Building / Society Name"/></div>
+      <div class="form-group"><label class="form-label">Flat / House No.</label><input class="form-input" id="dFlat" placeholder="Flat No. / House No."/></div>
+      <div class="form-group"><label class="form-label">Landmark / Area</label><input class="form-input" id="dLandmark" placeholder="Nearby landmark or area"/></div>
+      <div class="form-group"><label class="form-label">Additional Notes</label><input class="form-input" id="dNotes" placeholder="Any special instructions..."/></div>
+    </div>
+    <div id="pickupFields">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="pName" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Mobile Number</label><input class="form-input" id="pPhone" type="tel" placeholder="+91 XXXXXXXXXX"/></div>
+    </div>
+    <button id="placeOrderBtn" class="btn-gold" style="margin-top:8px;" onclick="sendOrder()">Send Order on WhatsApp</button>`;
+  deliveryMode='pickup';
+}
+
+function _dispatchOrder(distKm){
   const orderId=genOrderId();
   let msg=`🛍️ *NEW ORDER — The Original*\n📋 *Order ID:* ${orderId}\n📅 *Date:* ${new Date().toLocaleString('en-IN')}\n\n`;
   if(deliveryMode==='delivery'){
@@ -658,14 +786,14 @@ function sendOrder(){
     const flat=document.getElementById('dFlat').value.trim();
     const landmark=document.getElementById('dLandmark').value.trim();
     const notes=document.getElementById('dNotes').value.trim();
-    if(!name||!phone||!building||!flat){showToast('Please fill all required fields');return;}
     msg+=`🚚 *Mode:* Delivery\n👤 *Name:* ${name}\n📞 *Mobile:* ${phone}\n🏢 *Building:* ${building}\n🚪 *Flat/House:* ${flat}\n`;
     if(landmark)msg+=`📍 *Landmark:* ${landmark}\n`;
     if(notes)msg+=`📝 *Notes:* ${notes}\n`;
+    if(distKm!=null)msg+=`📏 *Distance from Shop:* ${distKm.toFixed(2)} km\n`;
+    else msg+=`📏 *Distance from Shop:* Not available\n`;
   }else{
     const name=document.getElementById('pName').value.trim();
     const phone=document.getElementById('pPhone').value.trim();
-    if(!name||!phone){showToast('Please fill name and mobile');return;}
     msg+=`🏃 *Mode:* Pickup\n👤 *Name:* ${name}\n📞 *Mobile:* ${phone}\n`;
   }
   msg+=`\n🛒 *Items Ordered:*\n`;
@@ -693,21 +821,41 @@ function openAdmin(){
 function closeAdmin(){document.getElementById('adminModal').classList.remove('active');}
 function verifyAdmin(){
   const code=document.getElementById('adminCode').value;
-  if(code==='Aditya')showAdminPanel();
+  if(code==='Aditya') showAdminPanel();
+  else if(code==='1234567890') showAdmin1Panel();
   else showToast('Incorrect code ✗');
+}
+
+/* ── ADMIN 1 — ADS ONLY (code: 1234567890) ── */
+function showAdmin1Panel(){
+  document.getElementById('adminBody').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div>
+      <span style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);">Admin 1 — Ads Manager</span>
+    </div>
+    <div id="admin1AdsSection">${buildAdsSection()}</div>
+    <button class="btn-outline" style="margin-top:14px;" onclick="closeAdmin()">Close</button>`;
+}
+function refreshAdmin1Ads(){
+  const sec=document.getElementById('admin1AdsSection');
+  if(sec)sec.innerHTML=buildAdsSection();
 }
 
 function showAdminPanel(){
   document.getElementById('adminBody').innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);"></div>
+      <span style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);">Main Admin — Full Control</span>
+    </div>
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="showAdminTab('status',this)">Status</button>
       <button class="admin-tab" onclick="showAdminTab('items',this)">Items</button>
-      <button class="admin-tab" onclick="showAdminTab('ads',this)">Ads</button>
+      <button class="admin-tab" onclick="showAdminTab('range',this)">Range</button>
       <button class="admin-tab" onclick="showAdminTab('tnc',this)">T&amp;C</button>
     </div>
     <div id="adminSection_status" class="admin-section active">${buildStatusSection()}</div>
     <div id="adminSection_items" class="admin-section">${buildItemsSection()}</div>
-    <div id="adminSection_ads" class="admin-section">${buildAdsSection()}</div>
+    <div id="adminSection_range" class="admin-section">${buildRangeSection()}</div>
     <div id="adminSection_tnc" class="admin-section">${buildTncSection()}</div>
     <button class="btn-outline" onclick="closeAdmin()">Close Dashboard</button>`;
 }
@@ -785,13 +933,45 @@ function addAd(){
   if(!title&&!img){showToast('Please enter a title or image URL');return;}
   ads.push({title,sub,img,link});saveState();renderAds();
   showToast('Ad added successfully ✓');
-  // Rebuild ads section
-  document.getElementById('adminSection_ads').innerHTML=buildAdsSection();
+  // Refresh whichever ads section is visible
+  const sec1=document.getElementById('admin1AdsSection');
+  const sec2=document.getElementById('adminSection_ads');
+  if(sec1)sec1.innerHTML=buildAdsSection();
+  if(sec2)sec2.innerHTML=buildAdsSection();
 }
 function deleteAd(idx){
   ads.splice(idx,1);saveState();renderAds();
-  document.getElementById('adminSection_ads').innerHTML=buildAdsSection();
+  const sec1=document.getElementById('admin1AdsSection');
+  const sec2=document.getElementById('adminSection_ads');
+  if(sec1)sec1.innerHTML=buildAdsSection();
+  if(sec2)sec2.innerHTML=buildAdsSection();
   showToast('Ad removed');
+}
+
+/* RANGE */
+function buildRangeSection(){
+  return`
+  <p style="color:var(--muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">Delivery Range</p>
+  <div style="background:var(--dark3);border:1px solid rgba(201,168,76,.12);border-radius:4px;padding:14px;margin-bottom:16px;font-size:13px;color:var(--muted);line-height:1.7;">
+    📍 Shop Coordinates:<br/>
+    <span style="color:var(--gold);letter-spacing:.5px;">Lat 22.787887 &nbsp;·&nbsp; Lng 86.159083</span><br/>
+    <span style="font-size:11px;color:rgba(158,144,128,.5);">(S Type Adityapur, near Vishal Megamart)</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Maximum Delivery Distance (km)</label>
+    <input class="form-input" id="rangeKmInput" type="number" min="0.5" max="50" step="0.5" value="${deliveryRange}" placeholder="e.g. 5"/>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:14px;letter-spacing:.3px;">
+    Customers beyond this distance will see <span style="color:var(--accent);">"Out of Delivery Range"</span> and will be offered Pickup instead.
+  </div>
+  <button class="btn-gold" onclick="saveRange()">Save Range Setting</button>`;
+}
+function saveRange(){
+  const val=parseFloat(document.getElementById('rangeKmInput').value);
+  if(isNaN(val)||val<=0){showToast('Please enter a valid distance');return;}
+  deliveryRange=val;saveState();
+  showToast(`Delivery range set to ${val} km ✓`);
+  document.getElementById('adminSection_range').innerHTML=buildRangeSection();
 }
 
 /* T&C */
