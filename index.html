@@ -436,7 +436,7 @@ const menuData=[
   {cat:"Fries",name:"French Fries",price:40,img:"https://i.ibb.co/vCqMznPB/Whats-App-Image-2026-03-25-at-15-42-58.jpg"},
   {cat:"Fries",name:"Peri Peri Fries",price:60,img:"https://i.ibb.co/5WxCGY5t/Whats-App-Image-2026-03-25-at-15-49-25.jpg"},
   {cat:"Momos",name:"Steam Veg Momo (6 pcs)",price:50,img:"https://i.ibb.co/v6BsSg8r/download.jpg"},
-  {cat:"Momos",name:"Steam Veg Momo (10 pcs)",price:80,img:"https://i.ibb.co/60LnCJTw/Panasian-Bbq-Momo.jpg0"},
+  {cat:"Momos",name:"Steam Veg Momo (10 pcs)",price:80,img:"https://i.ibb.co/60LnCJTw/Panasian-Bbq-Momo.jpg"},
   {cat:"Momos",name:"Veg Fried Momo (6 pcs)",price:60,img:"https://i.ibb.co/M53gKPGF/Fried-Momo.jpg"},
   {cat:"Momos",name:"Veg Fried Momo (10 pcs)",price:100,img:"https://i.ibb.co/zTHqfKvN/image.jpg"},
   {cat:"Momos",name:"Steam Paneer Momo (10 pcs)",price:90,img:"https://i.ibb.co/Rk1z4Bby/momo-is-love.jpg"},
@@ -444,7 +444,7 @@ const menuData=[
   {cat:"Momos",name:"Paneer Fried Momo (10 pcs)",price:110,img:"https://i.ibb.co/Q7rtVZxK/chicken-momos.jpg"},
   {cat:"Momos",name:"Paneer Fried Momo (6 pcs)",price:70,img:"https://i.ibb.co/Fkb4dZbR/Momo-reccs.jpg"},
   {cat:"Momos",name:"KFC Momo (4 pcs)",price:50,img:"https://i.ibb.co/4wkmzrJf/Whats-App-Image-2026-03-27-at-15-28-03.jpg"},
-  {cat:"Momos",name:"KFC Momo (8 pcs)",price:100,img:""},
+  {cat:"Momos",name:"KFC Momo (8 pcs)",price:100,img:"https://i.ibb.co/4wkmzrJf/Whats-App-Image-2026-03-27-at-15-28-03.jpg"},
   {cat:"Milkshakes",name:"Blueberry Milkshake",price:120,img:"https://i.ibb.co/k2CxWMQV/Whats-App-Image-2026-03-25-at-15-55-27.jpg"},
   {cat:"Milkshakes",name:"Blackcurrant Milkshake",price:100,img:"https://i.ibb.co/k2CxWMQV/Whats-App-Image-2026-03-25-at-15-55-27.jpg"},
   {cat:"Milkshakes",name:"Butterscotch Milkshake",price:80,img:"https://i.ibb.co/k2CxWMQV/Whats-App-Image-2026-03-25-at-15-55-27.jpg"},
@@ -1139,7 +1139,7 @@ async function callClaudeAPI(userText){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-4-5',
         max_tokens:600,
         system:CHAT_SYSTEM,
         messages:chatHistory
