@@ -1139,7 +1139,7 @@ async function callClaudeAPI(userText){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-5',
+        model:'claude-3-5-sonnet-20241022',
         max_tokens:600,
         system:CHAT_SYSTEM,
         messages:chatHistory
